@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".MainActivity">
+
+
+    <!-- Guidelines -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hg1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.07" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hg2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hg3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hg4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.83" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/hg5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.88" />
+
+    <!-- COMPUTER HOLE CARDS-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Computer"
+        android:textColor="@color/card"
+        app:layout_constraintBottom_toBottomOf="@id/computerHoleCard1"
+        app:layout_constraintTop_toTopOf="@id/computerHoleCard1"
+        app:layout_constraintLeft_toLeftOf="@id/flop1"/>
+
+    <TextView
+        android:id="@+id/computerHoleCard1"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:background="@drawable/shape"
+        android:text="\?"
+        android:textColor="@color/card"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/computerHoleCard2"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/hg1"
+        android:layout_marginRight="10dp"/>
+
+    <TextView
+        android:id="@+id/computerHoleCard2"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:background="@drawable/shape"
+        android:text="\?"
+        android:textColor="@color/card"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/computerHoleCard1"
+        app:layout_constraintTop_toTopOf="@+id/hg1"
+        android:layout_marginLeft="10dp"/>
+
+
+    <!-- THE FLOP -->
+    <TextView
+        android:id="@+id/txt_winner_computer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WINNER !"
+        android:textColor="#FFEB3B"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/computerHoleCard2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/computerHoleCard2"
+        app:layout_constraintTop_toTopOf="@+id/hg1" />
+
+    <TextView
+        android:id="@+id/txt_tie_computer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TIE"
+        android:textColor="#228326"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/computerHoleCard2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/computerHoleCard2"
+        app:layout_constraintTop_toTopOf="@+id/hg1" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="15dp"
+        android:background="#6E6B6B"
+        app:layout_constraintBottom_toTopOf="@id/flop1"
+        app:layout_constraintLeft_toLeftOf="@id/flop1"
+        app:layout_constraintRight_toLeftOf="@id/label_flop" />
+
+    <TextView
+        android:id="@+id/label_flop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="THE FLOP"
+        android:textColor="#6E6B6B"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@id/hg2"
+        app:layout_constraintLeft_toLeftOf="@id/flop2"
+        app:layout_constraintRight_toRightOf="@id/flop2" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="15dp"
+        android:background="#6E6B6B"
+        app:layout_constraintBottom_toTopOf="@id/flop1"
+        app:layout_constraintLeft_toRightOf="@id/flop2"
+        app:layout_constraintRight_toRightOf="@id/flop3" />
+
+    <TextView
+        android:id="@+id/flop1"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:background="@drawable/shape"
+        android:text="\?"
+        android:textColor="@color/card"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/flop2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hg2" />
+
+    <TextView
+        android:id="@+id/flop2"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:background="@drawable/shape"
+        android:text="\?"
+        android:textColor="@color/card"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/flop3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/flop1"
+        app:layout_constraintTop_toBottomOf="@id/hg2" />
+
+    <TextView
+        android:id="@+id/flop3"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:background="@drawable/shape"
+        android:text="\?"
+        android:textColor="@color/card"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/flop2"
+        app:layout_constraintTop_toBottomOf="@id/hg2" />
+
+    <!-- POT -->
+
+    <!-- TURN -->
+    <TextView
+        android:id="@+id/label_pot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="POT"
+        android:textAlignment="center"
+        android:textColor="#228326"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/river"
+        app:layout_constraintStart_toEndOf="@id/turn"
+        app:layout_constraintTop_toTopOf="@id/turn"/>
+
+    <TextView
+        android:id="@+id/pot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="#228326"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/label_pot"
+        app:layout_constraintEnd_toStartOf="@id/river"
+        app:layout_constraintStart_toEndOf="@id/turn"/>
+
+    <TextView
+        android:id="@+id/label_turn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TURN"
+        android:textColor="#6E6B6B"
+        app:layout_constraintBottom_toTopOf="@id/hg3"
+        app:layout_constraintEnd_toEndOf="@+id/turn"
+        app:layout_constraintStart_toStartOf="@+id/turn" />
+
+    <TextView
+        android:id="@+id/turn"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:background="@drawable/shape"
+        android:text="\?"
+        android:textColor="@color/card"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/flop1"
+        app:layout_constraintTop_toBottomOf="@id/hg3" />
+
+
+    <!-- RIVER -->
+    <TextView
+        android:id="@+id/label_river"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RIVER"
+        android:textColor="#6E6B6B"
+        app:layout_constraintBottom_toTopOf="@id/hg3"
+        app:layout_constraintEnd_toEndOf="@+id/river"
+        app:layout_constraintStart_toStartOf="@+id/river" />
+
+    <TextView
+        android:id="@+id/river"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:background="@drawable/shape"
+        android:text="\?"
+        android:textColor="@color/card"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/flop3"
+        app:layout_constraintTop_toBottomOf="@id/hg3"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#6E6B6B"
+        app:layout_constraintLeft_toLeftOf="@id/flop1"
+        app:layout_constraintRight_toRightOf="@id/flop3"
+        app:layout_constraintTop_toBottomOf="@id/turn" />
+
+
+    <!-- PLAYER HOLE CARDS-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Player"
+        android:textColor="@color/card"
+        app:layout_constraintBottom_toBottomOf="@id/playerHoleCard1"
+        app:layout_constraintTop_toTopOf="@id/playerHoleCard1"
+        app:layout_constraintLeft_toLeftOf="@id/flop1"/>
+
+    <TextView
+        android:id="@+id/playerHoleCard1"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/shape"
+        android:text="\?"
+        android:textColor="@color/card"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/hg4"
+        app:layout_constraintEnd_toStartOf="@+id/playerHoleCard2"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/playerHoleCard2"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:background="@drawable/shape"
+        android:text="\?"
+        android:textColor="@color/card"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/hg4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/playerHoleCard1"
+        android:layout_marginLeft="10dp"/>
+
+
+    <TextView
+        android:id="@+id/txt_winner_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WINNER !"
+        android:textColor="#FFEB3B"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/playerHoleCard2"
+        app:layout_constraintTop_toTopOf="@id/playerHoleCard2"
+        app:layout_constraintBottom_toBottomOf="@id/playerHoleCard2"/>
+
+    <TextView
+        android:id="@+id/txt_tie_player"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TIE"
+        android:textColor="#228326"
+        android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/playerHoleCard2"
+        app:layout_constraintTop_toTopOf="@id/playerHoleCard2"
+        app:layout_constraintBottom_toBottomOf="@id/playerHoleCard2"/>
+
+
+    <!-- MENU -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/hg5"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/menu_vg"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.55" />
+
+        <!-- Balance -->
+        <TextView
+            android:id="@+id/label_bet"
+            android:textColor="@color/white"
+            android:text="Total bet: "
+            android:paddingLeft="10dp"
+            android:textSize="16sp"
+            android:background="#228326"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/txt_chips"
+            app:layout_constraintBottom_toBottomOf="@id/txt_chips"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <TextView
+            android:id="@+id/txt_total_bet"
+            android:textColor="@color/white"
+            android:text="0"
+            android:textSize="16sp"
+            android:background="#228326"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/txt_chips"
+            app:layout_constraintBottom_toBottomOf="@id/txt_chips"
+            app:layout_constraintLeft_toRightOf="@id/label_bet"
+            app:layout_constraintRight_toLeftOf="@id/txt_raise_amount"/>
+
+        <TextView
+            android:id="@+id/label_chips"
+            android:textColor="@color/white"
+            android:text="Chips remaining: "
+            android:paddingLeft="10dp"
+            android:textSize="16sp"
+            android:background="#228326"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/txt_chips"
+            app:layout_constraintBottom_toBottomOf="@id/txt_chips"
+            app:layout_constraintLeft_toRightOf="@id/txt_total_bet"/>
+
+        <TextView
+            android:id="@+id/txt_chips"
+            android:textColor="@color/white"
+            android:text="10"
+            android:textSize="16sp"
+            android:background="#228326"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/label_chips"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <!-- Bet button -->
+        <TextView
+            android:id="@+id/btn_raise"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="RAISE"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:background="#3cb371"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/txt_raise_amount"
+            app:layout_constraintTop_toBottomOf="@id/txt_chips"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <NumberPicker
+            android:id="@+id/numberPicker"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/txt_raise_amount"
+            app:layout_constraintBottom_toBottomOf="@id/txt_raise_amount"
+            app:layout_constraintRight_toRightOf="@id/menu_vg"
+            app:layout_constraintLeft_toLeftOf="@id/txt_raise_amount"/>
+
+        <TextView
+            android:id="@+id/txt_raise_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="10"
+            android:textSize="30dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:textStyle="bold"
+            android:background="#328155"
+            android:drawableLeft="@drawable/ic_swap"
+            app:layout_constraintTop_toBottomOf="@id/txt_chips"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/menu_vg"/>
+
+
+        <TextView
+            android:id="@+id/btn_fold"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="FOLD"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="#3cb371"
+            app:layout_constraintTop_toBottomOf="@id/txt_chips"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/menu_vg"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/playAgain"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="Play Again"
+            android:textSize="30sp"
+            android:textColor="#228326"
+            android:background="@color/black"
+            android:visibility="invisible"
+            app:layout_constraintTop_toBottomOf="@id/txt_chips"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
