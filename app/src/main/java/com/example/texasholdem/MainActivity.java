@@ -3,9 +3,13 @@ package com.example.texasholdem;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ValueAnimator;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
@@ -16,7 +20,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
     private static final int NUMBER_OF_CARDS_DEALT = 9;
     private static final int MIN_RAISE_AMOUNT = 1;
-    private static final int BEGINNING_BALANCE = 10;
+    private static final int BEGINNING_BALANCE = 20;
     private static final String[] suitSymbols= {"\n\u2667", "\n\u2662","\n\u2661","\n\u2664"};
 
     private int computerCard_1, computerCard_2, playerCard_1, playerCard_2, flopCard_1, flopCard_2, flopCard_3, turnCard, riverCard;
@@ -30,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
     boolean riverCardHidden=true;
 
     private TextView txt_computerCard_1, txt_computerCard_2, txt_playerCard_1, txt_playerCard_2, txt_flopCard_1, txt_flopCard_2, txt_flopCard_3, txt_turnCard, txt_riverCard;
-    private TextView txt_pot, txt_total_bet, txt_chips, txt_raise_amount, txt_computer_winner, txt_player_winner, txt_computer_tie, txt_player_tie;
+    private TextView txt_pot, txt_total_bet, txt_chips, txt_computer_winner, txt_player_winner, txt_computer_tie, txt_player_tie;
     private NumberPicker numberPicker;
-    private TextView btn_raise, btn_fold;
-    private Button btn_playAgain;
+    private Button btn_raise, btn_fold, btn_playAgain;
+    private ImageView icon_up, icon_down;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,11 +72,12 @@ public class MainActivity extends AppCompatActivity {
                     txt_pot.setText(String.valueOf(pot));
                     txt_chips.setText(String.valueOf(numberOfChips));
 
-                    //The second bet must be equal to or greater than the previous bet. If after the first bet, what's remaining is not enough for the second bet, then the player needs to go all-in in the second bet.
+                    //The second bet should be equal to or greater than the previous bet. If after the first bet, chips left is not enough for the second bet, then the player needs to go all-in in the second bet.
                     numberPicker.setMinValue(Math.min(numberOfChips, raisedAmount));
                     numberPicker.setMaxValue(numberOfChips);
                     numberPicker.setValue(numberPicker.getMinValue());
-                    txt_raise_amount.setText(String.valueOf(numberPicker.getValue()));
+                    icon_down.setVisibility(View.INVISIBLE);
+                    if(numberOfChips<=raisedAmount) icon_up.setVisibility(View.INVISIBLE);
 
                 }else if(riverCardHidden){
                     riverCardHidden=false;
@@ -89,7 +94,11 @@ public class MainActivity extends AppCompatActivity {
 
         btn_fold.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { play(); }
+            public void onClick(View v) {
+                btn_playAgain.setVisibility(View.VISIBLE);
+                btn_fold.setVisibility(View.INVISIBLE);
+                btn_raise.setVisibility(View.INVISIBLE);
+            }
         });
 
         btn_playAgain.setOnClickListener(new View.OnClickListener() {
@@ -99,17 +108,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void play(){
+        // Reset variables and views
         btn_playAgain.setVisibility(View.INVISIBLE);
         txt_computer_winner.setVisibility(View.INVISIBLE);
         txt_player_winner.setVisibility(View.INVISIBLE);
         txt_player_tie.setVisibility(View.INVISIBLE);
         txt_computer_tie.setVisibility(View.INVISIBLE);
+        icon_down.setVisibility(View.INVISIBLE);
 
+        btn_fold.setVisibility(View.VISIBLE);
+        btn_raise.setVisibility(View.VISIBLE);
+        icon_up.setVisibility(View.VISIBLE);
+
+        turnCardHidden=true;
+        riverCardHidden=true;
         totalBet=0;
         pot=0;
         raisedAmount =0;
-        turnCardHidden=true;
-        riverCardHidden=true;
+
+        txt_total_bet.setText(String.valueOf(totalBet));
+        txt_pot.setText(String.valueOf(pot));
+        txt_chips.setText(String.valueOf(numberOfChips));
 
         dealCards();
 
@@ -124,20 +143,21 @@ public class MainActivity extends AppCompatActivity {
         txt_turnCard.setText("?");
         txt_riverCard.setText("?");
 
-        txt_total_bet.setText(String.valueOf(totalBet));
-        txt_pot.setText(String.valueOf(pot));
-        txt_chips.setText(String.valueOf(numberOfChips));
-
         numberPicker.setMinValue(MIN_RAISE_AMOUNT);
         numberPicker.setMaxValue(numberOfChips);
         numberPicker.setWrapSelectorWheel(false);
         numberPicker.setValue(MIN_RAISE_AMOUNT);
-        txt_raise_amount.setText(String.valueOf(numberPicker.getValue()));
-
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                txt_raise_amount.setText(String.valueOf(picker.getValue()));
+                if(picker.getValue()==numberPicker.getMinValue()){
+                    icon_down.setVisibility(View.INVISIBLE);
+                }else if(picker.getValue()==numberPicker.getMaxValue()){
+                    icon_up.setVisibility(View.INVISIBLE);
+                }else{
+                    icon_down.setVisibility(View.VISIBLE);
+                    icon_up.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
@@ -179,6 +199,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void determineWinner(){
         btn_playAgain.setVisibility(View.VISIBLE);
+        btn_fold.setVisibility(View.INVISIBLE);
+        btn_raise.setVisibility(View.INVISIBLE);
 
         //Cards dealt to the computer and player
         int[] computerCards = {computerCard_1, computerCard_2, flopCard_1, flopCard_2, flopCard_3, turnCard, riverCard};
@@ -202,24 +224,41 @@ public class MainActivity extends AppCompatActivity {
             numberOfChips=numberOfChips+totalBet;
             txt_player_tie.setVisibility(View.VISIBLE);
             txt_computer_tie.setVisibility(View.VISIBLE);
+            txt_chips.setText(String.valueOf(numberOfChips));
         }else if(winner==1){
             txt_computer_winner.setVisibility(View.VISIBLE);
         }else{
             numberOfChips = numberOfChips+pot;
             txt_player_winner.setVisibility(View.VISIBLE);
+
+            int previousChipBalance = Integer.parseInt(txt_chips.getText().toString());
+
+            ValueAnimator animator = ValueAnimator.ofInt(previousChipBalance, numberOfChips);
+            animator.setDuration(2000);
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    txt_chips.setText(animator.getAnimatedValue().toString());
+                    txt_pot.setText(String.valueOf(numberOfChips - Integer.parseInt(animator.getAnimatedValue().toString())));
+                }
+            });
+            animator.start();
         }
 
-        txt_chips.setText(String.valueOf(numberOfChips));
-
-        if(numberOfChips<=0){
+        // If the player lost all the chips, reset the number of chips.
+        if(numberOfChips==0){
             numberOfChips=BEGINNING_BALANCE;
 
             AlertDialog dialogBuilder = new AlertDialog.Builder(MainActivity.this)
-                    .setMessage("You've lost all your chips :( \nNumber of chips is reset to "+numberOfChips+".")
+                    .setCancelable(false)
+                    .setMessage("You've lost all your chips :( \nNumber of chips will be reset to "+numberOfChips+".")
+                    .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            play();
+                        }
+                    })
                     .show();
-
-            txt_total_bet.setText("0");
-            txt_chips.setText(String.valueOf(numberOfChips));
         }
     }
 
@@ -248,9 +287,10 @@ public class MainActivity extends AppCompatActivity {
         txt_player_tie=findViewById(R.id.txt_tie_player);
         txt_pot=findViewById(R.id.pot);
         txt_total_bet=findViewById(R.id.txt_total_bet);
-        txt_raise_amount=findViewById(R.id.txt_raise_amount);
         txt_chips =findViewById(R.id.txt_chips);
 
         numberPicker=findViewById(R.id.numberPicker);
+        icon_up=findViewById(R.id.icon_up);
+        icon_down=findViewById(R.id.icon_down);
     }
 }
