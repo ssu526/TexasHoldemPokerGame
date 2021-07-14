@@ -52,49 +52,50 @@
         android:text="Computer"
         android:textColor="@color/card"
         app:layout_constraintBottom_toBottomOf="@id/computerHoleCard1"
-        app:layout_constraintTop_toTopOf="@id/computerHoleCard1"
-        app:layout_constraintLeft_toLeftOf="@id/flop1"/>
+        app:layout_constraintLeft_toLeftOf="@id/flop1"
+        app:layout_constraintTop_toTopOf="@id/computerHoleCard1" />
 
     <TextView
         android:id="@+id/computerHoleCard1"
         android:layout_width="70dp"
         android:layout_height="100dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/shape"
+        android:gravity="center"
         android:text="\?"
         android:textColor="@color/card"
-        android:gravity="center"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/computerHoleCard2"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/hg1"
-        android:layout_marginEnd="10dp"/>
+        app:layout_constraintTop_toTopOf="@+id/hg1" />
 
     <TextView
         android:id="@+id/computerHoleCard2"
         android:layout_width="70dp"
         android:layout_height="100dp"
+        android:layout_marginStart="10dp"
         android:background="@drawable/shape"
+        android:gravity="center"
         android:text="\?"
         android:textColor="@color/card"
-        android:gravity="center"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/computerHoleCard1"
-        app:layout_constraintTop_toTopOf="@+id/hg1"
-        android:layout_marginStart="10dp"/>
+        app:layout_constraintTop_toTopOf="@+id/hg1" />
 
     <TextView
         android:id="@+id/txt_winner_computer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_star"
         android:text="WINNER !"
-        android:textColor="#E8592B"
+        android:textColor="@color/winnerText"
         android:textSize="20sp"
-        android:visibility="invisible"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/computerHoleCard2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/computerHoleCard2"
@@ -105,10 +106,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TIE"
-        android:textColor="#228326"
+        android:textColor="@color/green"
         android:textSize="20sp"
-        android:visibility="invisible"
         android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/computerHoleCard2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/computerHoleCard2"
@@ -130,9 +131,9 @@
         android:id="@+id/label_flop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:text="THE FLOP"
         android:textColor="#6E6B6B"
-        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@id/hg2"
         app:layout_constraintLeft_toLeftOf="@id/flop2"
         app:layout_constraintRight_toRightOf="@id/flop2" />
@@ -151,10 +152,10 @@
         android:id="@+id/flop1"
         android:layout_width="70dp"
         android:layout_height="100dp"
-        android:background="@drawable/shape"
+        android:background="@color/cardBackground"
+        android:gravity="center"
         android:text="\?"
         android:textColor="@color/card"
-        android:gravity="center"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/flop2"
@@ -165,10 +166,10 @@
         android:id="@+id/flop2"
         android:layout_width="70dp"
         android:layout_height="100dp"
-        android:background="@drawable/shape"
+        android:background="@color/cardBackground"
+        android:gravity="center"
         android:text="\?"
         android:textColor="@color/card"
-        android:gravity="center"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/flop3"
@@ -180,10 +181,10 @@
         android:id="@+id/flop3"
         android:layout_width="70dp"
         android:layout_height="100dp"
-        android:background="@drawable/shape"
+        android:background="@color/cardBackground"
+        android:gravity="center"
         android:text="\?"
         android:textColor="@color/card"
-        android:gravity="center"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -207,9 +208,9 @@
         android:layout_width="70dp"
         android:layout_height="100dp"
         android:background="@drawable/shape"
+        android:gravity="center"
         android:text="\?"
         android:textColor="@color/card"
-        android:gravity="center"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/flop1"
@@ -232,13 +233,13 @@
         android:layout_width="70dp"
         android:layout_height="100dp"
         android:background="@drawable/shape"
+        android:gravity="center"
         android:text="\?"
         android:textColor="@color/card"
-        android:gravity="center"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/flop3"
-        app:layout_constraintTop_toBottomOf="@id/hg3"/>
+        app:layout_constraintTop_toBottomOf="@id/hg3" />
 
     <!-- POT -->
     <TextView
@@ -247,12 +248,12 @@
         android:layout_height="wrap_content"
         android:text="POT"
         android:textAlignment="center"
-        android:textColor="#228326"
+        android:textColor="@color/green"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/river"
         app:layout_constraintStart_toEndOf="@id/turn"
-        app:layout_constraintTop_toTopOf="@id/turn"/>
+        app:layout_constraintTop_toTopOf="@id/turn" />
 
     <TextView
         android:id="@+id/pot"
@@ -260,12 +261,12 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textAlignment="center"
-        android:textColor="#228326"
+        android:textColor="@color/green"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/label_pot"
         app:layout_constraintEnd_toStartOf="@id/river"
-        app:layout_constraintStart_toEndOf="@id/turn"/>
+        app:layout_constraintStart_toEndOf="@id/turn"
+        app:layout_constraintTop_toBottomOf="@id/label_pot" />
 
     <View
         android:layout_width="0dp"
@@ -284,18 +285,18 @@
         android:text="Player"
         android:textColor="@color/card"
         app:layout_constraintBottom_toBottomOf="@id/playerHoleCard1"
-        app:layout_constraintTop_toTopOf="@id/playerHoleCard1"
-        app:layout_constraintLeft_toLeftOf="@id/flop1"/>
+        app:layout_constraintLeft_toLeftOf="@id/flop1"
+        app:layout_constraintTop_toTopOf="@id/playerHoleCard1" />
 
     <TextView
         android:id="@+id/playerHoleCard1"
         android:layout_width="70dp"
         android:layout_height="100dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/shape"
+        android:background="@color/cardBackground"
+        android:gravity="center"
         android:text="\?"
         android:textColor="@color/card"
-        android:gravity="center"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/hg4"
@@ -308,106 +309,88 @@
         android:id="@+id/playerHoleCard2"
         android:layout_width="70dp"
         android:layout_height="100dp"
-        android:background="@drawable/shape"
+        android:layout_marginStart="10dp"
+        android:background="@color/cardBackground"
+        android:gravity="center"
         android:text="\?"
         android:textColor="@color/card"
-        android:gravity="center"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/hg4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/playerHoleCard1"
-        android:layout_marginStart="10dp"/>
+        app:layout_constraintStart_toEndOf="@+id/playerHoleCard1" />
 
 
     <TextView
         android:id="@+id/txt_winner_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_star"
         android:text="WINNER !"
-        android:textColor="#E8592B"
+        android:textColor="@color/winnerText"
         android:textSize="20sp"
-        android:visibility="invisible"
         android:textStyle="bold"
-        app:layout_constraintRight_toRightOf="parent"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/playerHoleCard2"
         app:layout_constraintLeft_toRightOf="@id/playerHoleCard2"
-        app:layout_constraintTop_toTopOf="@id/playerHoleCard2"
-        app:layout_constraintBottom_toBottomOf="@id/playerHoleCard2"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/playerHoleCard2" />
 
     <TextView
         android:id="@+id/txt_tie_player"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TIE"
-        android:textColor="#228326"
+        android:textColor="@color/green"
         android:textSize="20sp"
-        android:visibility="invisible"
         android:textStyle="bold"
-        app:layout_constraintRight_toRightOf="parent"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/playerHoleCard2"
         app:layout_constraintLeft_toRightOf="@id/playerHoleCard2"
-        app:layout_constraintTop_toTopOf="@id/playerHoleCard2"
-        app:layout_constraintBottom_toBottomOf="@id/playerHoleCard2"/>
-
-    <!-- TOTAL BET -->
-    <TextView
-        android:id="@+id/label_bet"
-        android:text="Total Bet: "
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        app:layout_constraintBottom_toTopOf="@id/hg5"
-        app:layout_constraintLeft_toLeftOf="parent"/>
-
-    <TextView
-        android:id="@+id/txt_total_bet"
-        android:text="0"
-        android:textSize="16sp"
-        android:textColor="@color/black"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/label_bet"
-        app:layout_constraintLeft_toRightOf="@id/label_bet"
-        app:layout_constraintRight_toLeftOf="@id/flop2"/>
-
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/playerHoleCard2" />
 
     <!-- CHIPS LEFT -->
+
     <TextView
         android:id="@+id/label_chips"
-        android:textColor="@color/black"
-        android:text="Chips Left: "
-        android:textSize="16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/playerHoleCard1"
-        app:layout_constraintBottom_toTopOf="@id/hg5"/>
+        android:text="Chips Left: "
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_chips"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/playerHoleCard1" />
+
 
     <TextView
         android:id="@+id/txt_chips"
-        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="0"
         android:textSize="16sp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        app:layout_constraintLeft_toRightOf="@id/label_chips"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/hg5"/>
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/label_chips"
+        app:layout_constraintTop_toTopOf="@id/label_chips"/>
 
     <!-- MENU -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/menu_vg_1"
-        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintGuide_percent="0.2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/menu_vg_2"
-        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintGuide_percent="0.6" />
 
 
@@ -415,7 +398,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#329136"
+        android:background="@color/menuBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -424,34 +407,34 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        app:layout_constraintTop_toTopOf="@id/hg5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/menu_vg_1">
+        app:layout_constraintRight_toLeftOf="@id/menu_vg_1"
+        app:layout_constraintTop_toTopOf="@id/hg5">
 
         <ImageView
             android:id="@+id/icon_up"
-            android:src="@drawable/ic_up"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            android:src="@drawable/ic_up"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/icon_down"
-            android:src="@drawable/ic_down"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_down"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:layout_constraintLeft_toLeftOf="parent" />
 
         <NumberPicker
             android:id="@+id/numberPicker"
             android:layout_width="0dp"
-            android:layout_height="120dp"
+            android:layout_height="130dp"
+            android:selectionDividerHeight="0dp"
             android:theme="@style/NumberPickerTheme"
+            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -462,34 +445,32 @@
         android:id="@+id/btn_raise"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="RAISE"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:gravity="center"
-        android:backgroundTint="#296C47"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
+        android:backgroundTint="@color/green"
+        android:gravity="center"
+        android:text="RAISE"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/menu_vg_1"
         app:layout_constraintRight_toRightOf="@id/menu_vg_2"
-        app:layout_constraintTop_toTopOf="@id/hg5"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toTopOf="@id/hg5" />
 
     <Button
         android:id="@+id/btn_fold"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="FOLD"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:gravity="center"
-        android:backgroundTint="#942e2e"
         android:layout_marginEnd="5dp"
+        android:backgroundTint="@color/red"
+        android:gravity="center"
+        android:text="FOLD"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/menu_vg_2"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/hg5"
-        app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="HardcodedText" />
 
     <Button
@@ -500,10 +481,10 @@
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="Play Again"
-        android:textColor="#228326"
+        android:textColor="@color/playAgainButtonText"
         android:textSize="30sp"
-        app:cornerRadius="0dp"
         android:visibility="invisible"
+        app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

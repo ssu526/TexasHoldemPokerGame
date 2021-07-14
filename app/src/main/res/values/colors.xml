@@ -12,5 +12,12 @@
 <!--    <color name="card">#FFFFFFFF</color>-->
 
     <color name="background">#ABBC97</color>
+    <color name="cardBackground">#8FA17A</color>
     <color name="card">#FF000000</color>
+    <color name="green">#296C47</color>
+    <color name="red">#942e2e</color>
+    <color name="playAgainButtonText">#228326</color>
+    <color name="disabledButtonText">#636161</color>
+    <color name="winnerText">#ECE932</color>
+    <color name="menuBackground">#329136</color>
 </resources>
