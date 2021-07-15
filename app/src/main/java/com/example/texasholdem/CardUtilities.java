@@ -1,14 +1,18 @@
 package com.example.texasholdem;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
-public class Card {
-    public static final int HAND_SiZE = 5;
+public class CardUtilities {
+    public static final int HAND_SIZE = 5;
+    public static final String[] SUIT_SYMBOLS = {"\u2667", "\u2662","\u2661","\u2664"};
 
-    private Card() {
+    private CardUtilities() {
     }
 
     /** Convert a card from numbers 1-52 to 1-13(Ace to King) **/
@@ -18,7 +22,7 @@ public class Card {
 
     /** Find the suit of a card (0 is club, 1 is diamond, 2 is heart, 3 is spade) **/
     public static int findSuit(int card){
-        return (int)(card-1)/13;
+        return (card-1) /13;
     }
 
      /** Check if a set of cards(number 1-13) is a straight **/
@@ -184,7 +188,7 @@ public class Card {
         int[] highest = cards.get(0);
 
         for(int i=1;i<cards.size();i++){
-            int higherHand = Card.compareTwoHands(highest, cards.get(i));
+            int higherHand = CardUtilities.compareTwoHands(highest, cards.get(i));
             if(higherHand==2) highest = cards.get(i);
         }
         return highest;
@@ -192,8 +196,8 @@ public class Card {
 
     /**  Given a set of cards generate all the combinations of hands(1-52) **/
     public static void generateHandCombinations(List<int[]>handCombinations, int[] cards){
-        int[] hand = new int[HAND_SiZE];
-        combinationUtil(handCombinations, cards, hand, 0, cards.length-1, 0, HAND_SiZE);
+        int[] hand = new int[HAND_SIZE];
+        combinationUtil(handCombinations, cards, hand, 0, cards.length-1, 0, HAND_SIZE);
     }
 
     private static void combinationUtil(List<int[]>handCombinations, int[] cards, int[] hand, int start, int end, int index, int r){
@@ -206,5 +210,33 @@ public class Card {
                 combinationUtil(handCombinations, cards, hand, i+1, end, index+1, r);
             }
         }
+    }
+
+    /** Input is an array of cards (1-52). Each card in the input will be converted to its corresponding rank(1-13) and suit. The cards will be sorted by its rank and the output is a string that concatenates all the cards. **/
+    public static String cardToString(int[] hand){
+        Map<Integer, List<Integer>> map = new TreeMap<>();
+        String str = "";
+
+        for (int j : hand) {
+            int computerRank = findRank(j);
+            int computerSuit = findSuit(j);
+
+            if (map.get(computerRank) == null) {
+                List<Integer> list = new ArrayList<>();
+                list.add(computerSuit);
+                map.put(computerRank, list);
+            } else {
+                map.get(computerRank).add(computerSuit);
+            }
+
+        }
+
+        for(Map.Entry<Integer, List<Integer>> entry: map.entrySet()){
+            for(int i:entry.getValue()){
+                str = str+"  "+entry.getKey()+SUIT_SYMBOLS[i];
+            }
+        }
+
+        return str;
     }
 }

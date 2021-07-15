@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Texas Holdem</string>
+    <string name="card">%1$d\n%2$s</string>
+    <string name="unknown">?</string>
 </resources>

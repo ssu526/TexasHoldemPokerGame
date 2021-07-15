@@ -3,7 +3,7 @@
     android:shape="rectangle"
     android:thickness="10dp">
 
-    <corners android:radius="4dp"/>
+    <corners android:radius="5dp"/>
     <stroke
         android:dashWidth="5dp"
         android:dashGap="2dp"

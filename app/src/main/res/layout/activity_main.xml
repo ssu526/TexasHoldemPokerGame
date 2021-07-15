@@ -21,14 +21,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.27" />
+        app:layout_constraintGuide_percent="0.29" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hg3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.47" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hg4"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.92" />
+        app:layout_constraintGuide_percent="0.91" />
 
 
     <!-- COMPUTER HOLE CARDS-->
@@ -62,7 +62,7 @@
         android:layout_marginEnd="10dp"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="\?"
+        android:text="@string/unknown"
         android:textColor="@color/card"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -78,7 +78,7 @@
         android:layout_marginStart="10dp"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="\?"
+        android:text="@string/unknown"
         android:textColor="@color/card"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -115,6 +115,15 @@
         app:layout_constraintStart_toEndOf="@+id/computerHoleCard2"
         app:layout_constraintTop_toTopOf="@+id/hg1" />
 
+    <!-- HIGHEST COMPUTER HAND -->
+    <TextView
+        android:id="@+id/txt_highestComputerHand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/computerHoleCard1"
+        app:layout_constraintBottom_toTopOf="@id/label_flop"/>
 
     <!-- THE FLOP -->
     <View
@@ -152,9 +161,8 @@
         android:id="@+id/flop1"
         android:layout_width="70dp"
         android:layout_height="100dp"
-        android:background="@color/cardBackground"
+        android:background="@drawable/rounded_corner"
         android:gravity="center"
-        android:text="\?"
         android:textColor="@color/card"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -166,9 +174,8 @@
         android:id="@+id/flop2"
         android:layout_width="70dp"
         android:layout_height="100dp"
-        android:background="@color/cardBackground"
+        android:background="@drawable/rounded_corner"
         android:gravity="center"
-        android:text="\?"
         android:textColor="@color/card"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -181,9 +188,8 @@
         android:id="@+id/flop3"
         android:layout_width="70dp"
         android:layout_height="100dp"
-        android:background="@color/cardBackground"
+        android:background="@drawable/rounded_corner"
         android:gravity="center"
-        android:text="\?"
         android:textColor="@color/card"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -209,7 +215,7 @@
         android:layout_height="100dp"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="\?"
+        android:text="@string/unknown"
         android:textColor="@color/card"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -234,7 +240,7 @@
         android:layout_height="100dp"
         android:background="@drawable/shape"
         android:gravity="center"
-        android:text="\?"
+        android:text="@string/unknown"
         android:textColor="@color/card"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -249,7 +255,7 @@
         android:text="POT"
         android:textAlignment="center"
         android:textColor="@color/green"
-        android:textSize="25sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/river"
         app:layout_constraintStart_toEndOf="@id/turn"
@@ -262,13 +268,14 @@
         android:text="0"
         android:textAlignment="center"
         android:textColor="@color/green"
-        android:textSize="25sp"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@id/river"
         app:layout_constraintStart_toEndOf="@id/turn"
         app:layout_constraintTop_toBottomOf="@id/label_pot" />
 
     <View
+        android:id="@+id/pool_bottom_line"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
@@ -276,6 +283,16 @@
         app:layout_constraintLeft_toLeftOf="@id/flop1"
         app:layout_constraintRight_toRightOf="@id/flop3"
         app:layout_constraintTop_toBottomOf="@id/turn" />
+
+    <!-- HIGHEST PLAYER HAND -->
+    <TextView
+        android:id="@+id/txt_highestPlayerHand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/playerHoleCard1"
+        app:layout_constraintTop_toBottomOf="@id/pool_bottom_line"/>
 
 
     <!-- PLAYER HOLE CARDS-->
@@ -293,9 +310,8 @@
         android:layout_width="70dp"
         android:layout_height="100dp"
         android:layout_marginEnd="10dp"
-        android:background="@color/cardBackground"
+        android:background="@drawable/rounded_corner"
         android:gravity="center"
-        android:text="\?"
         android:textColor="@color/card"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -310,9 +326,8 @@
         android:layout_width="70dp"
         android:layout_height="100dp"
         android:layout_marginStart="10dp"
-        android:background="@color/cardBackground"
+        android:background="@drawable/rounded_corner"
         android:gravity="center"
-        android:text="\?"
         android:textColor="@color/card"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -351,7 +366,6 @@
         app:layout_constraintTop_toTopOf="@id/playerHoleCard2" />
 
     <!-- CHIPS LEFT -->
-
     <TextView
         android:id="@+id/label_chips"
         android:layout_width="wrap_content"
@@ -364,7 +378,6 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/playerHoleCard1" />
-
 
     <TextView
         android:id="@+id/txt_chips"
@@ -384,14 +397,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.2" />
+        app:layout_constraintGuide_percent="0.25" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/menu_vg_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.6" />
+        app:layout_constraintGuide_percent="0.65" />
 
 
     <!-- Raise and Fold -->
@@ -431,10 +444,9 @@
         <NumberPicker
             android:id="@+id/numberPicker"
             android:layout_width="0dp"
-            android:layout_height="130dp"
+            android:layout_height="140dp"
             android:selectionDividerHeight="0dp"
             android:theme="@style/NumberPickerTheme"
-            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -470,8 +482,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/menu_vg_2"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/hg5"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintTop_toTopOf="@id/hg5"/>
 
     <Button
         android:id="@+id/playAgain"
