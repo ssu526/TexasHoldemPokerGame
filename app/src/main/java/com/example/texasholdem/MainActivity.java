@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
 
 import android.animation.ValueAnimator;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -23,7 +24,11 @@ public class MainActivity extends AppCompatActivity {
     private static final int NUMBER_OF_CARDS_DEALT = 9;
     private static final int MIN_RAISE_AMOUNT = 1;
     private static final int BEGINNING_BALANCE = 20;
+    private static final String SHARED_PREFS = "sharedPrefs";
+    private static final String HIGHEST_SCORE = "highestScore";
+    private static final String CURRENT_SCORE = "currentScore";
 
+    private static SharedPreferences sharedPreferences;
     private int computerCard_1, computerCard_2, playerCard_1, playerCard_2, flopCard_1, flopCard_2, flopCard_3, turnCard, riverCard, numberOfChips, raisedAmount, potValue;
     private boolean turnCardHidden, riverCardHidden;
 
@@ -39,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sharedPreferences=getSharedPreferences(SHARED_PREFS,MODE_PRIVATE);
+        numberOfChips=sharedPreferences.getInt(CURRENT_SCORE,BEGINNING_BALANCE);
         initViews();
         dealCards();
 
@@ -48,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             btn_playAgain.setVisibility(View.VISIBLE);
             btn_fold.setVisibility(View.INVISIBLE);
             btn_raise.setVisibility(View.INVISIBLE);
+            updateCurrentScore();
         });
         
         btn_raise.setOnClickListener(this::raiseBet);
@@ -103,13 +111,10 @@ public class MainActivity extends AppCompatActivity {
             // If it's an "all-in" or it's the last round of betting, end game and determine the winner
             txt_computerCard_1.setText(getString(R.string.card, CardUtilities.findRank(computerCard_1), SUIT_SYMBOLS[CardUtilities.findSuit(computerCard_1)]));
             txt_computerCard_1.setBackground((AppCompatResources.getDrawable(MainActivity.this, R.drawable.rounded_corner)));
-
             txt_computerCard_2.setText(getString(R.string.card, CardUtilities.findRank(computerCard_2), SUIT_SYMBOLS[CardUtilities.findSuit(computerCard_2)]));
             txt_computerCard_2.setBackground((AppCompatResources.getDrawable(MainActivity.this, R.drawable.rounded_corner)));
-
             txt_turnCard.setText(getString(R.string.card, CardUtilities.findRank(turnCard), SUIT_SYMBOLS[CardUtilities.findSuit(turnCard)]));
             txt_turnCard.setBackground((AppCompatResources.getDrawable(MainActivity.this, R.drawable.rounded_corner)));
-
             txt_riverCard.setText(getString(R.string.card, CardUtilities.findRank(riverCard), SUIT_SYMBOLS[CardUtilities.findSuit(riverCard)]));
             txt_riverCard.setBackground((AppCompatResources.getDrawable(MainActivity.this, R.drawable.rounded_corner)));
 
@@ -124,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             new Handler().postDelayed(runnable, 300);
             new Handler().postDelayed(this::enableButtons, 1400);
 
-            /*Reset NumberPicker. The second bet should be equal to or greater than the previous bet.
+            /*Reset NumberPicker for the second bet. The second bet should be equal to or greater than the previous bet.
             If after the first bet, chips left is not enough for the second bet, then the player needs to go all-in in the second bet.*/
             numberPicker.setMinValue(Math.min(numberOfChips, raisedAmount));
             numberPicker.setMaxValue(numberOfChips);
@@ -157,11 +162,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void showWinner(){
+        //Determine winner, update the chip balance, and show the winner
         int winner = determineWinner();
-
         int previousChipBalance = numberOfChips;
         int previousPotBalance = potValue;
         potValue=0;
+
+        txt_highestComputerHand.setText(CardUtilities.cardToString(highestComputerHand));
+        txt_highestPlayerHand.setText(CardUtilities.cardToString(highestPlayerHand));
 
         if(winner==0){
             txt_player_tie.setVisibility(View.VISIBLE);
@@ -177,19 +185,21 @@ public class MainActivity extends AppCompatActivity {
             runnable = () -> valueAnimation(previousChipBalance, previousPotBalance);
         }
 
-        txt_highestComputerHand.setText(CardUtilities.cardToString(highestComputerHand));
-        txt_highestPlayerHand.setText(CardUtilities.cardToString(highestPlayerHand));
-
         new Handler().postDelayed(runnable, 1000);
 
 
-        // IF THE PLAYER LOST ALL THE CHIPS, RESET THE NUMBER OF CHIPS
+        //Update SharedPreferences
+        updateCurrentScore();
+        if(numberOfChips>sharedPreferences.getInt(HIGHEST_SCORE,0)) updateHighestScore();
+
+        // If the player lost all the chips, reset the number of chips.
         if(numberOfChips==0){
             new AlertDialog.Builder(MainActivity.this)
                     .setCancelable(false)
-                    .setMessage("You've lost all your chips :( \nNumber of chips will be reset to "+numberOfChips+".")
+                    .setMessage("You've lost all your chips :( \nNumber of chips will be reset to "+BEGINNING_BALANCE+".")
                     .setPositiveButton("Close", (dialog, which) -> {
                         numberOfChips=BEGINNING_BALANCE;
+                        updateCurrentScore();
                         dealCards();
                     })
                     .show();
@@ -202,6 +212,19 @@ public class MainActivity extends AppCompatActivity {
 
             new Handler().postDelayed(this::enableButtons, 2200);
         }
+    }
+
+    private void updateCurrentScore(){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(CURRENT_SCORE, numberOfChips);
+        editor.apply();
+    }
+
+    private void updateHighestScore(){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(HIGHEST_SCORE, numberOfChips);
+        editor.apply();
+        new AlertDialog.Builder(MainActivity.this).setMessage("GREAT JOB!\nNEW HIGH SCORE: "+numberOfChips).show();
     }
 
 
@@ -221,26 +244,24 @@ public class MainActivity extends AppCompatActivity {
     private void disableButtons(){
         btn_raise.setEnabled(false);
         btn_fold.setEnabled(false);
-        btn_playAgain.setEnabled(false);
 
         btn_raise.setTextColor(getColor(R.color.disabledButtonText));
+        btn_raise.setBackgroundColor(getColor(R.color.disabledButtonBackground));
         btn_fold.setTextColor(getColor(R.color.disabledButtonText));
-        btn_playAgain.setTextColor(getColor(R.color.disabledButtonText));
+        btn_fold.setBackgroundColor(getColor(R.color.disabledButtonBackground));
     }
 
     private void enableButtons(){
         btn_raise.setEnabled(true);
         btn_fold.setEnabled(true);
-        btn_playAgain.setEnabled(true);
 
         btn_raise.setTextColor(getColor(R.color.white));
+        btn_raise.setBackgroundColor(getColor(R.color.green));
         btn_fold.setTextColor(getColor(R.color.white));
-        btn_playAgain.setTextColor(getColor(R.color.playAgainButtonText));
+        btn_fold.setBackgroundColor(getColor(R.color.red));
     }
 
     private void initViews(){
-        numberOfChips = BEGINNING_BALANCE;
-
         txt_computerCard_1=findViewById(R.id.computerHoleCard1);
         txt_computerCard_2=findViewById(R.id.computerHoleCard2);
         txt_playerCard_1=findViewById(R.id.playerHoleCard1);
@@ -265,6 +286,10 @@ public class MainActivity extends AppCompatActivity {
         icon_down=findViewById(R.id.icon_down);
         numberPicker=findViewById(R.id.numberPicker);
 
+        int currentScore = sharedPreferences.getInt(CURRENT_SCORE,0);
+        txt_chips.setText(String.valueOf(currentScore));
+
+        numberPicker.setWrapSelectorWheel(false);
         numberPicker.setOnValueChangedListener((picker, oldVal, newVal) -> {
             if(picker.getValue()==numberPicker.getMinValue()){
                 icon_down.setVisibility(View.INVISIBLE);
@@ -289,6 +314,7 @@ public class MainActivity extends AppCompatActivity {
         txt_player_tie.setVisibility(View.INVISIBLE);
         txt_computer_tie.setVisibility(View.INVISIBLE);
         icon_down.setVisibility(View.INVISIBLE);
+
         icon_up.setVisibility(View.VISIBLE);
         btn_fold.setVisibility(View.VISIBLE);
         btn_raise.setVisibility(View.VISIBLE);
@@ -316,7 +342,6 @@ public class MainActivity extends AppCompatActivity {
         //Reset NumberPicker
         numberPicker.setMinValue(MIN_RAISE_AMOUNT);
         numberPicker.setMaxValue(numberOfChips);
-        numberPicker.setWrapSelectorWheel(false);
         numberPicker.setValue(MIN_RAISE_AMOUNT);
     }
 }

@@ -25,7 +25,7 @@ public class CardUtilities {
         return (card-1) /13;
     }
 
-     /** Check if a set of cards(number 1-13) is a straight **/
+     /** Check if a set of cards is a straight. The input is a sorted set of cards numbered between 1 to 13. **/
     public static boolean checkStraight(int[] sortedHand){
         for(int i=0;i<sortedHand.length-1;i++){
             if(sortedHand[i+1]-sortedHand[i]!=1) return false;
@@ -33,7 +33,7 @@ public class CardUtilities {
         return true;
     }
 
-     /** Check if a set of cards(1-52) is a flush **/
+     /** Check if a set of cards is a flush. The input is a set of cards numbered between 1 to 52. **/
     public static boolean checkFlush(int[] cards){
         int suit = findSuit(cards[0]);
 
@@ -45,7 +45,7 @@ public class CardUtilities {
 
 
      /** Return the ranking of a hand (1-Royal flush, 2-Straight flush, 3-Four of a kind, 4-Full house, 5-Flush, 6-Straight, 7-Three of a kind, 8-Two pairs, 9-Pairs, 10-High card)
-      The input hand should be between 1 to 13 and sorted */
+      The input is a sorted set of cards numbered between 1 to 13. */
     public static int findHandRanking(int[] sortedHand, Boolean isFlush){
         boolean isStraight = checkStraight(sortedHand);
 
@@ -81,10 +81,10 @@ public class CardUtilities {
     }
 
 
-    /** Compare two hands (0-tie, 1-firstHand is higher, 2-secondHand is higher)
+    /** Compare two hands (0-tie, 1-firstHand is stronger, 2-secondHand is stronger)
      The cards in each input hands are numbers from 1 to 52 **/
     public static int compareTwoHands(int[] firstHand, int[] secondHand){
-        // Convert the hands from 1-52 to 1-13 and sort each hand
+        // Convert the hands from 1-52 to 1-13 and sort both hands
         int[] sortedFirstHand = {findRank(firstHand[0]), findRank(firstHand[1]),findRank(firstHand[2]),findRank(firstHand[3]), findRank(firstHand[4])};
         int[] sortedSecondHand = {findRank(secondHand[0]), findRank(secondHand[1]),findRank(secondHand[2]),findRank(secondHand[3]), findRank(secondHand[4])};
         Arrays.sort(sortedFirstHand);
@@ -194,7 +194,7 @@ public class CardUtilities {
         return highest;
     }
 
-    /**  Given a set of cards generate all the combinations of hands(1-52) **/
+    /**  Given a set of cards(1-52), generate all the combinations of hands **/
     public static void generateHandCombinations(List<int[]>handCombinations, int[] cards){
         int[] hand = new int[HAND_SIZE];
         combinationUtil(handCombinations, cards, hand, 0, cards.length-1, 0, HAND_SIZE);
@@ -212,7 +212,7 @@ public class CardUtilities {
         }
     }
 
-    /** Input is an array of cards (1-52). Each card in the input will be converted to its corresponding rank(1-13) and suit. The cards will be sorted by its rank and the output is a string that concatenates all the cards. **/
+    /** Input is an array of cards(1-52). This method convert each card into its corresponding rank(1-13) and suit. The cards will then be sorted by its rank and the output is a string that concatenates all the cards. **/
     public static String cardToString(int[] hand){
         Map<Integer, List<Integer>> map = new TreeMap<>();
         String str = "";
@@ -233,7 +233,7 @@ public class CardUtilities {
 
         for(Map.Entry<Integer, List<Integer>> entry: map.entrySet()){
             for(int i:entry.getValue()){
-                str = str+"  "+entry.getKey()+SUIT_SYMBOLS[i];
+                str = str+"   "+entry.getKey()+SUIT_SYMBOLS[i];
             }
         }
 

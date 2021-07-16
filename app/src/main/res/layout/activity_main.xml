@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.47" />
+        app:layout_constraintGuide_percent="0.48" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/hg4"
@@ -447,6 +447,7 @@
             android:layout_height="140dp"
             android:selectionDividerHeight="0dp"
             android:theme="@style/NumberPickerTheme"
+            android:descendantFocusability="blocksDescendants"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
