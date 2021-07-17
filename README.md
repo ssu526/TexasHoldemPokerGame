@@ -10,7 +10,7 @@ There are three stages in the game:
 
 * Stage 2: 
   * The turn card will be shown. The player can choose to bet or discard the cards.
-  * If the player discards the cards, the game ends and the player losses the chips that he bet in stage 1.
+  * If the player discards the cards, the game ends and the player loses the chips that he bet in stage 1.
   * If the player bets, the player continues to the next stage.
 <br/> 
  
