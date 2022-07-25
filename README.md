@@ -1,7 +1,8 @@
 # Texas Holdem
 
-This is a simplified version of the poker game "Texas Holdem". There's only one player and every time the player bets, the computer bets the same amount.
+This is a one-player version of the Texas Hold'em poker game created using Java and Android Studio. 
 
+[Video Demo](https://www.youtube.com/watch?v=5XAbnHIYRfY)
 
 ## Screenshots
   
