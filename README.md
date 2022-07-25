@@ -1,4 +1,4 @@
-# Texas Holdem
+# Texas Hold'em
 
 This is a one-player version of the Texas Hold'em poker game created using Java and Android Studio. 
 
