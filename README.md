@@ -2,7 +2,6 @@
 
 This is a one-player version of the Texas Hold'em poker game created using Java and Android Studio. 
 
-[Video Demo](https://www.youtube.com/watch?v=5XAbnHIYRfY)
 
 ## Screenshots
   
